@@ -14,4 +14,19 @@ def login_post():
   password = request.form.get('password')
   remember = True if request.form.get('remember') else False
 
-  return AuthController().login(email=email, password=password, remember=remember)
+  return AuthController.login(AuthController, email=email, password=password, remember=remember)
+
+
+@auth.route('/signup')
+def signup():
+  return render_template('auth/register.html')
+
+
+@auth.route('/signup', methods=['POST'])
+def signup_post():
+  name = request.form.get('name')
+  email = request.form.get('email')
+  password = request.form.get('password')
+  telephone = request.form.get('telephone')
+  
+  return AuthController.register(AuthController, name, email, telephone, password) 
