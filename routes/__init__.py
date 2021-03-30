@@ -1,0 +1,1 @@
+__all__ = ['auth_route', 'home_route']
