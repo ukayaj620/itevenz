@@ -1,5 +1,6 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect, url_for
 from ..controllers.auth_controller import AuthController
+from flask_login import logout_user, login_required
 
 auth = Blueprint('auth', __name__, template_folder='templates')
 
@@ -30,3 +31,10 @@ def signup_post():
   telephone = request.form.get('telephone')
   
   return AuthController.register(AuthController, name, email, telephone, password)
+
+
+@auth.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('company.home'))
