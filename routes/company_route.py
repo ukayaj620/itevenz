@@ -10,3 +10,7 @@ def home():
 def about():
   return render_template('company/about.html')
 
+@company.route('/event')
+def event():
+  return render_template('company/event.html')
+
