@@ -30,8 +30,11 @@ def create_app():
   from .routes.auth_route import auth
   app.register_blueprint(auth, url_prefix='/auth')
 
-  from .routes.home_route import home
-  app.register_blueprint(home, url_prefix='/home')
+  from .routes.participate_route import participate
+  app.register_blueprint(participate, url_prefix='/participate')
+
+  from .routes.held_route import held
+  app.register_blueprint(held, url_prefix='/held')
 
   from .routes.company_route import company
   app.register_blueprint(company, url_prefix='/')
