@@ -29,4 +29,4 @@ def signup_post():
   password = request.form.get('password')
   telephone = request.form.get('telephone')
   
-  return AuthController.register(AuthController, name, email, telephone, password) 
+  return AuthController.register(AuthController, name, email, telephone, password)
