@@ -1,26 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-</head>
-<body>
-  {% with messages = get_flashed_messages() %}
+{% extends "layout/base.html" %}
+
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=True) %}
   {% if messages %}
-      <div class="notification is-danger">
-          {{ messages[0] }}
-      </div>
+    <div class="w-100 alert alert-{{ messages[0][0] }}">
+        {{ messages[0][1] }}
+    </div>
   {% endif %}
-  {% endwith %}
-  <form style="display: flex; flex-direction: column; align-items: center; justify-content: center;" action="{{ url_for('auth.signup') }}" method="POST">
-    <input type="text" name="name" placeholder="Name">
-    <input type="email" name="email" placeholder="Email">
-    <input type="text" name="telephone" placeholder="Telephone">
-    <input type="password" name="password" placeholder="Password">
-    <input type="checkbox" name="remember">
-    <button type="submit">Login</button>
-  </form>
-</body>
-</html>
+{% endwith %}
+<span class="my-3"></span>
+<form class="col-md-3 d-flex flex-column justify-content-center align-items-center" action="{{ url_for('auth.login') }}" method="POST">
+  <div class="mb-2 w-100">
+    <label for="input-email" class="form-label">Name</label>
+    <input type="text" class="form-control" id="input-email" name="name">
+  </div>
+  <div class="mb-2 w-100">
+    <label for="input-email" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="input-email" name="email">
+  </div>
+  <div class="mb-2 w-100">
+    <label for="input-email" class="form-label">Telephone</label>
+    <input type="text" class="form-control" id="input-email" name="telephone">
+  </div>
+  <div class="mb-2 w-100">
+    <label for="input-password" class="form-label">Password</label>
+    <input type="password" class="form-control" id="input-password" name="password">
+  </div>
+  <button type="submit" class="btn btn-primary w-100 fw-bold mt-3">Sign Up</button>
+</form>
+{% endblock %}
