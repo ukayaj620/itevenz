@@ -15,7 +15,7 @@ class AuthController:
       return redirect(url_for('auth.login'))
 
     login_user(user, remember=remember)
-    return redirect(url_for('home.index'))
+    return redirect(url_for('participate.index'))
 
 
   def register(self, name, email, telephone, password):
