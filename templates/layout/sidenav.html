@@ -1,0 +1,18 @@
+<div class="col-3 d-flex flex-column justify-content-start align-items-center">
+  {% set sidenav = [
+    ('/home/', 'registered', 'Registered Event'),
+    ('/home/class', 'class', 'Open Class')  
+  ] -%}
+
+  {% for href, id, caption in sidenav %}
+  <a
+    type="button"
+    style="border-radius: 12px;"
+    class="btn align-self-stretch my-2 mx-4 bg-white shadow-sm py-2" 
+    href="{{ href }}"
+  >
+    <img src="{{ url_for('static', filename='images/' + id + '.svg') }}" width="100">
+    <p class="mt-2 mb-0"><strong>{{ caption }}</strong></p>
+  </a>
+  {% endfor %}
+</div>
