@@ -8,12 +8,15 @@ class AuthController:
   def login(self, email, password, remember):
     user = User.query.filter_by(email=email).first()
 
+    print(type(user))
+
     if not user or not check_password_hash(user.password, password):
-      flash('Please check your login details and try again.')
+      flash('Please check your login details and try again.', 'danger')
       return redirect(url_for('auth.login'))
 
     login_user(user, remember=remember)
     return redirect(url_for('home.index'))
+
 
   def register(self, name, email, telephone, password):
     user = User.query.filter_by(email=email).first()
