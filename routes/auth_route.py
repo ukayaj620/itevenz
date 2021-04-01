@@ -4,33 +4,29 @@ from flask_login import logout_user, login_required
 
 auth = Blueprint('auth', __name__, template_folder='templates')
 
-@auth.route('/login')
+@auth.route('/login', methods=['GET', 'POST'])
 def login():
-  return render_template('auth/login.html')
+  if request.method == 'POST':
+    email = request.form.get('email')
+    password = request.form.get('password')
+    remember = True if request.form.get('remember') else False
+
+    return AuthController.login(AuthController, email=email, password=password, remember=remember)
+  elif request.method == 'GET':
+    return render_template('auth/login.html')
 
 
-@auth.route('/login', methods=['POST'])
-def login_post():
-  email = request.form.get('email')
-  password = request.form.get('password')
-  remember = True if request.form.get('remember') else False
-
-  return AuthController.login(AuthController, email=email, password=password, remember=remember)
-
-
-@auth.route('/signup')
+@auth.route('/signup', methods=['GET', 'POST'])
 def signup():
-  return render_template('auth/register.html')
-
-
-@auth.route('/signup', methods=['POST'])
-def signup_post():
-  name = request.form.get('name')
-  email = request.form.get('email')
-  password = request.form.get('password')
-  telephone = request.form.get('telephone')
-  
-  return AuthController.register(AuthController, name, email, telephone, password)
+  if request.method == 'POST':
+    name = request.form.get('name')
+    email = request.form.get('email')
+    password = request.form.get('password')
+    telephone = request.form.get('telephone')
+    
+    return AuthController.register(AuthController, name, email, telephone, password)
+  elif request.method == 'GET':
+    return render_template('auth/register.html')
 
 
 @auth.route('/logout')
