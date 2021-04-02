@@ -1,14 +1,17 @@
 <div class="col-3 d-flex flex-column justify-content-start align-items-center">
   {% set sidenav = [
-    ('/home/', 'registered', 'Registered Event'),
-    ('/home/class', 'class', 'Open Class')  
+    ('/participate/', 'participate', 'Participate Event'),
+    ('/held/', 'held', 'Held Event')  
   ] -%}
 
   {% for href, id, caption in sidenav %}
+  {% set side_button = "btn align-self-stretch my-2 mx-4 bg-white shadow-sm py-2" -%}
   <a
     type="button"
     style="border-radius: 12px;"
-    class="btn align-self-stretch my-2 mx-4 bg-white shadow-sm py-2" 
+    {% if request.path == href %} class="{{ side_button }} border-primary border-2" 
+    {% else %} class="{{ side_button }}" 
+    {% endif %} 
     href="{{ href }}"
   >
     <img src="{{ url_for('static', filename='images/' + id + '.svg') }}" width="100">
