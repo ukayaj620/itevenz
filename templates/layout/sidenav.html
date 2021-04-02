@@ -1,11 +1,11 @@
-<div class="col-3 d-flex flex-column justify-content-start align-items-center">
+<div class="container col-lg-3 mb-3 m-lg-0 d-flex flex-row flex-lg-column justify-content-lg-start justify-content-between align-items-center">
   {% set sidenav = [
     ('/participate/', 'participate', 'Participate Event'),
     ('/held/', 'held', 'Held Event')  
   ] -%}
 
   {% for href, id, caption in sidenav %}
-  {% set side_button = "btn align-self-stretch my-2 mx-4 bg-white shadow-sm py-2" -%}
+  {% set side_button = "btn align-self-stretch my-2 bg-white shadow-sm py-3 mx-2 mx-lg-0 col-5 col-lg-12" -%}
   <a
     type="button"
     style="border-radius: 12px;"
