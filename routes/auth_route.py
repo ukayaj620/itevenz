@@ -23,8 +23,16 @@ def signup():
     email = request.form.get('email')
     password = request.form.get('password')
     telephone = request.form.get('telephone')
+    gender = request.form.get('gender')
     
-    return AuthController.register(AuthController, name, email, telephone, password)
+    return AuthController.register(
+      AuthController, 
+      name=name, 
+      email=email, 
+      telephone=telephone, 
+      password=password, 
+      gender=gender
+    )
   elif request.method == 'GET':
     return render_template('auth/register.html')
 

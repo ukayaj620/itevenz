@@ -18,7 +18,7 @@ class AuthController:
     return redirect(url_for('participate.index'))
 
 
-  def register(self, name, email, telephone, password):
+  def register(self, name, email, telephone, gender, password):
     user = User.query.filter_by(email=email).first()
 
     if user:
@@ -30,7 +30,9 @@ class AuthController:
       name=name,
       email=email,
       telephone=telephone,
+      gender=gender,
       password=generate_password_hash(password, method='sha256')
     )
+    flash('User has been successfully registered, proceed to login', 'info')
     return redirect(url_for('auth.login'))
 
