@@ -8,14 +8,22 @@ class User(UserMixin, db.Model):
   email = db.Column(db.String(255), unique=True, nullable=False)
   telephone = db.Column(db.String(255), unique=True, nullable=False)
   password = db.Column(db.String(255), unique=False, nullable=False)
-  registeredDate = db.Column(db.DateTime, nullable=False)
+  gender = db.Column(db.String(2), unique=False, nullable=False)
+  registered_date = db.Column(db.DateTime, nullable=False)
 
   def __repr__(self):
     return '<User %r>' % self.name
 
 
-  def create(self, name, email, telephone, password):
-    user = User(name=name, email=email, telephone=telephone, password=password, registeredDate=datetime.now())
+  def create(self, name, email, telephone, password, gender):
+    user = User(
+      name=name, 
+      email=email, 
+      telephone=telephone, 
+      password=password,
+      gender=gender,
+      registered_date=datetime.now()
+    )
     db.session.add(user)
     db.session.commit()
 
