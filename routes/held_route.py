@@ -11,8 +11,12 @@ held = Blueprint('held', __name__, template_folder='templates')
 @held.route('/')
 @login_required
 def open_class():
-  return render_template('held/index.html')
+  return render_template('held/index.html', events=EventController.fetch_all(EventController, user_id=current_user.id))
 
+@held.route('/view/<int:id>')
+@login_required
+def view(id):
+  return render_template('held/view.html', event=EventController.fetch_by_id(EventController, event_id=id))
 
 @held.route('/create', methods=['GET', 'POST'])
 @login_required
@@ -26,19 +30,19 @@ def create():
     start_time = request.form.get('start-time')
     end_date = request.form.get('end-date')
     end_time = request.form.get('end-time')
+    speaker = request.form.get('speaker')
     photo = request.files['photo']
 
     filename = secure_filename(photo.filename)
     photo_filename = ''
     if filename != '':
-      file_ext = os.path.splitext(filename)[1]
+      file_ext = os.path.splitext(filename)[1].lower()
       photo_filename = generate_photoname(file_ext)
       if file_ext not in Config.UPLOAD_EXTENSIONS or \
           file_ext != validate_image(photo.stream):
         abort(400)
       photo.save(os.path.join(Config.UPLOAD_PATH, photo_filename))
 
-    print(title, description, due_date, category, start_date, start_time, end_date, end_time, photo_filename)
     return EventController.create(
       EventController,
       title=title,
@@ -49,7 +53,18 @@ def create():
       start_time=start_time,
       end_time=end_time,
       due_date=due_date,
-      poster_filename=photo_filename
+      poster_filename=photo_filename,
+      speaker=speaker,
+      user_id=current_user.id
     )
 
   return render_template('held/create.html')
+
+@held.route('/update/<int:id>', methods=['GET', 'POST'])
+@login_required
+def update(id):
+  if request.method == 'POST':
+    return ""
+
+  return render_template('/held/update.html', event=EventController.fetch_by_id(EventController, id))
+
