@@ -25,7 +25,7 @@ class AuthController:
       flash('Email has already existed')
       return redirect(url_for('auth.signup'))
     
-    new_user = User.create(
+    User.create(
       User,
       name=name,
       email=email,
@@ -33,6 +33,7 @@ class AuthController:
       gender=gender,
       password=generate_password_hash(password, method='sha256')
     )
+    
     flash('User has been successfully registered, proceed to login', 'info')
     return redirect(url_for('auth.login'))
 
