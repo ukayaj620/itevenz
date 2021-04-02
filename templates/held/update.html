@@ -2,21 +2,22 @@
 
 {% block held_event_content %}
 <form class="d-flex flex-column justify-content-center align-items-center container-fluid me-lg-4 mb-4" enctype="multipart/form-data" action="{{ url_for('held.create') }}" method="POST">
+  <input type="hidden" class="form-control" id="input-title" name="id" value="{{ event.id }}">
   <div class="mb-2 w-100">
     <label for="input-title" class="form-label fw-bold">Event Title</label>
-    <input type="text" class="form-control" id="input-title" name="title">
+    <input type="text" class="form-control" id="input-title" name="title" value="{{ event.title }}">
   </div>
   <div class="mb-2 w-100 form-floating">
     <p class="mb-2 fw-bold">Description</p>
-    <textarea class="form-control p-2" id="input-description" name="description"></textarea>
+    <textarea class="form-control p-2" id="input-description" name="description">{{ event.description }}</textarea>
   </div>
   <div class="mb-2 w-100">
     <label for="input-speaker" class="form-label fw-bold">Pembicara</label>
-    <input type="text" class="form-control" id="input-speaker" name="speaker">
+    <input type="text" class="form-control" id="input-speaker" name="speaker" value="{{ event.speaker }}">
   </div>
   <div class="mb-2 w-100">
     <label for="input-due-date" class="form-label fw-bold">Registration Due Date</label>
-    <input type="date" class="form-control" id="input-due-date" name="due-date">
+    <input type="date" class="form-control" id="input-due-date" name="due-date" value="{{ event.due_date }}">
   </div>
   <div class="mb-2 w-100">
     <label class="form-label fw-bold">Category</label>
@@ -31,25 +32,28 @@
   <div class="mb-2 container d-flex flex-row justify-content-between px-0">
     <div class="col-5">
       <label for="input-start-date" class="form-label fw-bold">Start Date</label>
-      <input type="date" class="form-control" id="input-held-date" name="start-date">
+      <input type="date" class="form-control" id="input-held-date" name="start-date" value="{{ event.start_date }}">
       <div class="mt-2 col-12">
         <label for="input-start-time" class="form-label fw-bold">Start Time</label>
-        <input type="time" id="input-start-time" name="start-time">
+        <input type="time" id="input-start-time" name="start-time" value="{{ event.start_time }}">
       </div>
     </div>
     <div class="col-5">
       <label for="input-end-date" class="form-label fw-bold">End Date</label>
-      <input type="date" class="form-control" id="input-end-date" name="end-date">
+      <input type="date" class="form-control" id="input-end-date" name="end-date" value="{{ event.end_date }}">
       <div class="mt-2 col-12">
         <label for="input-end-time" class="form-label fw-bold">End Time</label>
-        <input type="time" id="input-end-time" name="end-time">
+        <input type="time" id="input-end-time" name="end-time" value="{{ event.end_time }}">
       </div>
     </div>
   </div>
-  <div class="w-100 mb-2">
+  <!-- <div class="mb-2 w-100">
     <label class="form-label fw-bold" for="input-photo">Pictures</label>
-    <input type="file" class="form-control" id="input-photo" name="photo">
-  </div>
-  <button type="submit" class="btn btn-primary w-100 fw-bold mt-3">Create Event</button>
+    <div class="d-flex flex-lg-row flex-column justify-content-between align-items-center">
+      <input type="file" class="form-control w-lg-75" id="input-photo" name="photo">
+      <a type="button" class="btn btn-primary fw-bold mt-3 mt-lg-0">Reupload Image</a>
+    </div>
+  </div> -->
+  <button type="submit" class="btn btn-primary w-100 fw-bold mt-3">Update Event</button>
 </form>
 {% endblock %}

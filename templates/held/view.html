@@ -1,0 +1,69 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+<div class="d-flex w-100 justify-content-center items-center flex-column flex-lg-row my-4">
+  {% include "layout/sidenav.html" %}
+  <div class="col-12 col-lg-9 px-4">
+    <div class="w-100 d-flex flex-row justify-content-between align-items-center mb-2 mx-lg-0">
+      <h2 class="mb-0"><strong>{{ event.title }}</strong></h2>
+      <div class="d-flex flex-row">
+        <a
+        class="btn btn-warning btn-xs fw-bold text-white"
+        href="/held/update/{{ event.id }}"
+        >
+          Edit
+        </a>
+        <a
+          class="btn btn-danger btn-xs fw-bold ms-2"
+          href="/held/delete/{{ event.id }}"
+          onclick="return confirm('Are You Sure To Delete ?')"
+        >
+          Delete
+        </a>
+      </div>
+    </div>
+    <div class="d-flex flex-column w-100 px-2 container-fluid justify-content-center justify-content-lg-start mt-4">
+      <div class="d-flex w-100 flex-column flex-lg-row justify-content-center align-items-center">
+        <img
+          src="{{ url_for('static', filename='/images/uploads/' + event.poster_filename) }}"
+          class="img-fluid col-12 col-lg-4 shadow-sm"
+          style="border-radius: 12px; max-width: 18rem;"
+        >
+        <div class="ms-lg-4 w-100 d-flex flex-column align-items-start justify-content-start">
+          <div class="w-100 py-1 d-flex flex-row align-items-center justify-content-start">
+            <img src="{{ url_for('static', filename='/images/speaker.svg') }}">
+            <p class="mb-0 fw-bold small">Speaker: </p>
+            <p class="mb-0 ms-2 small">{{ event.speaker }}</p>
+          </div>
+          <div class="w-100 py-1 d-flex flex-row align-items-center justify-content-start">
+            <img src="{{ url_for('static', filename='/images/event.svg') }}">
+            <p class="mb-0 fw-bold small">Start Date: </p>
+            <p class="mb-0 ms-2 small"> {{ event.start_date }} {{ event.start_time }}</p>
+          </div>
+          <div class="w-100 py-1 d-flex flex-row align-items-center justify-content-start">
+            <img src="{{ url_for('static', filename='/images/event.svg') }}">
+            <p class="mb-0 fw-bold small">End Date: </p>
+            <p class="mb-0 ms-2 small"> {{ event.end_date }} {{ event.end_time }}</p>
+          </div>
+          <div class="w-100 py-1 d-flex flex-row align-items-center justify-content-start">
+            <img src="{{ url_for('static', filename='/images/ddue.svg') }}">
+            <p class="mb-0 fw-bold small">Due Date: </p>
+            <p class="mb-0 ms-2 small">{{ event.due_date }}</p>
+          </div>
+          <div class="w-100 py-1 d-flex flex-row align-items-center justify-content-start">
+            <img src="{{ url_for('static', filename='/images/event_type.svg') }}">
+            <p class="mb-0 fw-bold small">Event Category: </p>
+            <p class="mb-0 ms-2 small">{{ event.category }}</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h6 class="mb-0 fw-bold mt-4">Description: </h6>
+        <p class="mb-0 small">{{ event.description }}</p>
+      </div>
+    </div>
+    {% block held_event_content %}
+    {% endblock %}
+  </div>
+</div>
+{% endblock %}
