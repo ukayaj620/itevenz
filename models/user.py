@@ -10,6 +10,7 @@ class User(UserMixin, db.Model):
   password = db.Column(db.String(255), unique=False, nullable=False)
   gender = db.Column(db.String(2), unique=False, nullable=False)
   registered_date = db.Column(db.DateTime, nullable=False)
+  events = db.relationship('Event', backref='user', lazy=True)
 
   def __repr__(self):
     return '<User %r>' % self.name
