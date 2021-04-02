@@ -26,6 +26,8 @@ def create_app():
   def load_user(user_id):
     return User.query.get(int(user_id))
 
+  from .models.event import Event
+
 
   from .routes.auth_route import auth
   app.register_blueprint(auth, url_prefix='/auth')
