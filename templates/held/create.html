@@ -1,6 +1,13 @@
 {% extends "held/index.html" %}
 
 {% block held_event_content %}
+{% with messages = get_flashed_messages(with_categories=True) %}
+  {% if messages %}
+    <div class="w-100 alert alert-{{ messages[0][0] }}">
+        {{ messages[0][1] }}
+    </div>
+  {% endif %}
+{% endwith %}
 <form class="d-flex flex-column justify-content-center align-items-center container-fluid me-lg-4 mb-4" enctype="multipart/form-data" action="{{ url_for('held.create') }}" method="POST">
   <div class="mb-2 w-100">
     <label for="input-title" class="form-label fw-bold">Event Title</label>
