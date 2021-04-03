@@ -8,7 +8,10 @@ held = Blueprint('held', __name__, template_folder='templates')
 @held.route('/')
 @login_required
 def open_class():
-  return render_template('held/index.html', events=EventController.fetch_all(EventController, user_id=current_user.id))
+  return render_template(
+    'held/index.html', 
+    events=EventController.fetch_user_assoc_event(EventController, user_id=current_user.id)
+  )
 
 @held.route('/view/<int:id>')
 @login_required
@@ -19,31 +22,10 @@ def view(id):
 @login_required
 def create():
   if request.method == 'POST':
-    title = request.form.get('title')
-    description = request.form.get('description')
-    due_date = request.form.get('due-date')
-    category = request.form.get('category')
-    start_date = request.form.get('start-date')
-    start_time = request.form.get('start-time')
-    end_date = request.form.get('end-date')
-    end_time = request.form.get('end-time')
-    speaker = request.form.get('speaker')
-    photo = request.files['photo']
-
-    photo_filename = save_image(photo)
-
     return EventController.create(
-      EventController,
-      title=title,
-      description=description,
-      start_date=start_date,
-      end_date=end_date,
-      category=category,
-      start_time=start_time,
-      end_time=end_time,
-      due_date=due_date,
-      poster_filename=photo_filename,
-      speaker=speaker,
+      EventController, 
+      request=request.form, 
+      photo=request.files['photo'], 
       user_id=current_user.id
     )
 
@@ -53,32 +35,10 @@ def create():
 @login_required
 def update(id):
   if request.method == 'POST':
-    id = request.form.get('id')
-    title = request.form.get('title')
-    description = request.form.get('description')
-    due_date = request.form.get('due-date')
-    category = request.form.get('category')
-    start_date = request.form.get('start-date')
-    start_time = request.form.get('start-time')
-    end_date = request.form.get('end-date')
-    end_time = request.form.get('end-time')
-    speaker = request.form.get('speaker')
-    photo = request.files['photo']
-
-    photo_filename = save_image(photo) if photo else None
-
     return EventController.update(
       EventController,
-      title=title,
-      description=description,
-      start_date=start_date,
-      end_date=end_date,
-      category=category,
-      start_time=start_time,
-      end_time=end_time,
-      due_date=due_date,
-      poster_filename=photo_filename,
-      speaker=speaker,
+      request=request.form,
+      photo=request.files['photo'],
       event_id=id
     )
 
