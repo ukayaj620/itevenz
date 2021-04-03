@@ -27,13 +27,14 @@ def create_app():
     return User.query.get(int(user_id))
 
   from .models.event import Event
+  from .models.participation import Participation
 
 
   from .routes.auth_route import auth
   app.register_blueprint(auth, url_prefix='/auth')
 
-  from .routes.participate_route import participate
-  app.register_blueprint(participate, url_prefix='/participate')
+  from .routes.participation_route import participation
+  app.register_blueprint(participation, url_prefix='/participation')
 
   from .routes.held_route import held
   app.register_blueprint(held, url_prefix='/held')
