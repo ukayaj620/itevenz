@@ -1,5 +1,5 @@
 from ..app import db
-from datetime import datetime
+
 
 class Event(db.Model):
   id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -14,6 +14,7 @@ class Event(db.Model):
   end_time = db.Column(db.Time, unique=False, nullable=False)
   due_date = db.Column(db.Date, nullable=False)
   speaker = db.Column(db.String(255), unique=False, nullable=False)
+  participates = db.relationship('Participation', backref='event', lazy=True)
 
   def __repr__(self):
     return '<Event %r>' % self.title
