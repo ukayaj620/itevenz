@@ -46,9 +46,9 @@
     <p class="mb-0 text-center text-lg-start">{{ event.description }}</p>
   </div>
   {% if participated_event %}
-    <a type="button" href="/participation/participate/{{ event.id }}" class="btn btn-primary btn-lg fw-bold my-4" style="max-width: fit-content;">JOIN NOW</a>
+    <a type="button" href="/participation/unparticipate/{{ participated_event.id }}" class="btn btn-danger btn-lg fw-bold my-4" style="max-width: fit-content;">CANCEL PARTICIPATION</a>
   {% else %}
-  <a type="button" href="/participation/unparticipate/{{ participated_event.id }}" class="btn btn-danger btn-lg fw-bold my-4" style="max-width: fit-content;">CANCEL PARTICIPATION</a>
+    <a type="button" href="/participation/participate/{{ event.id }}" class="btn btn-primary btn-lg fw-bold my-4" style="max-width: fit-content;">JOIN NOW</a>
   {% endif %}
 </div>
 {% endblock %}
