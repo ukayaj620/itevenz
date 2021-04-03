@@ -6,8 +6,7 @@ from ..models.event import Event
 class ParticipationController:
 
   def fetch_participation(self, user_id, event_id):
-    participated_events = Participation.get_participated_event(Participation, Event, user_id=user_id, event_id=event_id)
-    return participated_events
+    return Participation.query.filter_by(user_id=user_id, event_id=event_id).first()
 
   def fetch_participated_event(self, user_id):
     participated_events = Participation.get_participated_event(Participation, Event, user_id=user_id)

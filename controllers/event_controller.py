@@ -1,6 +1,7 @@
 from flask import redirect, url_for, flash, render_template
 from ..config import Config
 from ..models.event import Event
+from ..models.participation import Participation
 from ..utils.images import delete_image, save_image
 import os
 
@@ -66,6 +67,7 @@ class EventController:
     return redirect(url_for('held.open_class'))
 
   def delete(self, event_id):
+    Participation.delete_by_event(Participation, event_id=event_id)
     event = self.fetch_by_id(self, event_id=event_id)
 
     delete_image(event.poster_filename)

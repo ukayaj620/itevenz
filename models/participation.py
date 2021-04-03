@@ -11,8 +11,8 @@ class Participation(db.Model):
   def __repr__(self):
     return '<Participation %r>' % self.id
 
-  def get_participated_event(self, Event, user_id, event_id=None):
-    return db.session.query(self, Event).join(Event).filter(self.user_id == user_id, self.event_id == event_id)
+  def get_participated_event(self, Event, user_id):
+    return db.session.query(self, Event).join(Event).filter(self.user_id == user_id)
 
   def create(self, user_id, event_id):
     participation = Participation(
@@ -26,5 +26,11 @@ class Participation(db.Model):
   def delete(self, participation_id):
     participation = Participation.query.filter_by(id=participation_id).first()
     db.session.delete(participation)
+    db.session.commit()
+
+  def delete_by_event(self, event_id):
+    participations = Participation.query.filter_by(event_id=event_id).all()
+    for participation in participations:
+      db.session.delete(participation)
     db.session.commit()
 
