@@ -4,6 +4,7 @@ from ..models.event import Event
 from ..models.participation import Participation
 from ..utils.images import delete_image, save_image
 import os
+from datetime import datetime
 
 class EventController:
 
@@ -23,8 +24,20 @@ class EventController:
     return Event.query.filter_by(id=event_id).first()
 
   def create(self, request, photo, user_id):
+    registration = datetime.strptime(request['due-date'], '%Y-%m-%d')
+    start = datetime.strptime(request['start-date'] + ' ' + request['start-time'], '%Y-%m-%d %H:%M')
+    end = datetime.strptime(request['end-date'] + ' ' + request['end-time'], '%Y-%m-%d %H:%M')
+
+    if start > end:
+      flash('Start date should happened before end date', 'warning')
+      return redirect(url_for('held.create'))
+
+    if registration > start:
+      flash('Registration date should happened before start date', 'warning')
+      return redirect(url_for('held.create'))
+
     photo_filename = save_image(photo)
-    
+
     Event.create(
       Event,
       title=request['title'],
