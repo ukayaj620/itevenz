@@ -22,7 +22,12 @@ class AuthController:
     if user:
       flash('Email has already existed', 'warning')
       return redirect(url_for('auth.signup'))
-    
+
+    user = User.query.filter_by(telephone=request['telephone']).first()
+    if user:
+      flash('Telephone has already existed', 'warning')
+      return redirect(url_for('auth.signup'))
+
     User.create(
       User,
       name=request['name'],
