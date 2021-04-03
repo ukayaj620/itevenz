@@ -4,3 +4,4 @@ __pycache__/
 **/__pycache__/
 /static/images/uploads/
 config.py
+/static/example_images/
