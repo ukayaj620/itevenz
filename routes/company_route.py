@@ -21,6 +21,7 @@ def event():
 def event_detail(event_id):
   event = EventController.fetch_by_id(EventController, event_id=event_id)
 
+  participated_event = None
   if current_user.is_authenticated:
     participated_event = ParticipationController.fetch_participation(ParticipationController, user_id=current_user.id, event_id=event_id)
 

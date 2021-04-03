@@ -13,6 +13,7 @@ class ParticipationController:
     return render_template('participate/index.html', participated_events=participated_events)
 
   def participate(self, user_id, event_id):
+
     Participation.create(
       Participation,
       user_id=user_id,

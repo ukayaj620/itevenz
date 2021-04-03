@@ -16,7 +16,6 @@ def login():
 @auth.route('/signup', methods=['GET', 'POST'])
 def signup():
   if request.method == 'POST':
-    
     return AuthController.register(AuthController, request=request.form)
   elif request.method == 'GET':
     return render_template('auth/register.html')
