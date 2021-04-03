@@ -12,9 +12,9 @@ class EventController:
   def fetch_all(self, user_id=None):
     events = None
     if user_id is not None:
-      events = Event.query.filter(Event.user_id != user_id).all()
+      events = Event.query.filter(Event.user_id != user_id, Event.due_date > datetime.now()).all()
     else:
-      events = Event.query.all()
+      events = Event.query.filter(Event.due_date > datetime.now()).all()
 
     return render_template('company/event.html', events=events)
   
@@ -51,7 +51,7 @@ class EventController:
 
   def update(self, request, photo, event_id):
     check_message = check_form_time(request, True)
-    if check_message != '':
+    if check_message is not None:
       flash(check_message, 'warning')
       return redirect(url_for('held.update', id=event_id))
 
