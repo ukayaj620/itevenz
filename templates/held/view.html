@@ -24,12 +24,17 @@
     </div>
     <div class="d-flex flex-column w-100 px-2 container-fluid justify-content-center justify-content-lg-start mt-4">
       <div class="d-flex w-100 flex-column flex-lg-row justify-content-center align-items-center">
-        <img
-          src="{{ url_for('static', filename='/images/uploads/' + event.poster_filename) }}"
-          class="img-fluid col-12 col-lg-4 shadow-sm"
-          style="border-radius: 12px; max-width: 18rem;"
-        >
-        <div class="ms-lg-4 w-100 d-flex flex-column align-items-start justify-content-start">
+        <div class="col-lg-6 d-flex flex-row justify-content-center align-items-center">
+          <img
+            src="{{ url_for('static', filename='/images/uploads/' + event.poster_filename) }}"
+            class="img-fluid col-12 shadow-sm"
+            style="border-radius: 12px; max-width: 18rem; max-height: 18rem;"
+          >
+        </div>
+        <div class="ms-lg-4 col-lg-6 d-flex flex-column align-items-start justify-content-start">
+          <div class="w-100 py-1 d-flex flex-row align-items-center justify-content-center">
+            <h3 class="mb-0 w-100 fw-bold text-center text-lg-start">DETAILS</h3>
+          </div>
           <div class="w-100 py-1 d-flex flex-row align-items-center justify-content-start">
             <img src="{{ url_for('static', filename='/images/speaker.svg') }}">
             <p class="mb-0 fw-bold small">Speaker: </p>
@@ -57,9 +62,9 @@
           </div>
         </div>
       </div>
-      <div>
-        <h6 class="mb-0 fw-bold mt-4">Description: </h6>
-        <p class="mb-0 small">{{ event.description }}</p>
+      <div class="w-100 d-flex flex-column justify-content-center align-items-center">
+        <h6 class="mb-0 fw-bold mt-4 text-center text-lg-start">DESCRIPTION</h6>
+        <p class="mb-0 text-center text-lg-start small">{{ event.description }}</p>
       </div>
     </div>
     {% block held_event_content %}

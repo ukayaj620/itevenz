@@ -22,11 +22,14 @@
   <div class="mb-2 w-100">
     <label class="form-label fw-bold">Category</label>
     <select class="form-select" id="category" name="category" required>
-      <option selected>Choose the event type</option>
-      <option value="Webinar">Webinar</option>
-      <option value="Workshop">Workshop</option>
-      <option value="Talkshow">Talkshow</option>
-      <option value="Online Bootcamp">Online Bootcamp</option>
+      {% set options = ['Webinar', 'Workshop', 'Talkshow', 'Online Bootcamp'] -%}
+      {% for option in options %}
+        {% if option == event.category %}
+          <option value="{{ option }}" selected>{{ option }}</option>
+        {% else %}
+          <option value="{{ option }}">{{ option }}</option>
+        {% endif %}
+      {% endfor %}
     </select>
   </div>
   <div class="mb-2 container d-flex flex-row justify-content-between px-0">
@@ -49,7 +52,7 @@
   </div>
   <div class="mb-2 w-100">
     <label class="form-label fw-bold" for="input-photo">Pictures</label>
-    <input type="file" class="form-control w-lg-100" id="input-photo" name="photo" required>
+    <input type="file" class="form-control w-lg-100" id="input-photo" name="photo">
   </div>
   <button type="submit" class="btn btn-primary w-100 fw-bold mt-3">Update Event</button>
 </form>
