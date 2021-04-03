@@ -5,18 +5,15 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 class AuthController:
 
-  def login(self, request):
+  def login(self, request, remember):
     user = User.query.filter_by(email=request['email']).first()
-
-    print(type(user))
 
     if not user or not check_password_hash(user.password, request['password']):
       flash('Please check your login details and try again.', 'danger')
       return redirect(url_for('auth.login'))
 
-    remember = True if request['remember'] else False
     login_user(user, remember=remember)
-    return redirect(url_for('participate.index'))
+    return redirect(url_for('participation.index'))
 
 
   def register(self, request):
