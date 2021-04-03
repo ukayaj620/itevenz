@@ -5,6 +5,7 @@ from ..models.participation import Participation
 from ..utils.images import delete_image, save_image
 import os
 from datetime import datetime
+from ..utils.time import check_form_time
 
 class EventController:
 
@@ -24,16 +25,9 @@ class EventController:
     return Event.query.filter_by(id=event_id).first()
 
   def create(self, request, photo, user_id):
-    registration = datetime.strptime(request['due-date'], '%Y-%m-%d')
-    start = datetime.strptime(request['start-date'] + ' ' + request['start-time'], '%Y-%m-%d %H:%M')
-    end = datetime.strptime(request['end-date'] + ' ' + request['end-time'], '%Y-%m-%d %H:%M')
-
-    if start > end:
-      flash('Start date should happened before end date', 'warning')
-      return redirect(url_for('held.create'))
-
-    if registration > start:
-      flash('Registration date should happened before start date', 'warning')
+    check_message = check_form_time(request, False)
+    if check_message != '':
+      flash(check_message, 'warning')
       return redirect(url_for('held.create'))
 
     photo_filename = save_image(photo)
@@ -56,6 +50,11 @@ class EventController:
     return redirect(url_for('held.open_class'))
 
   def update(self, request, photo, event_id):
+    check_message = check_form_time(request, True)
+    if check_message != '':
+      flash(check_message, 'warning')
+      return redirect(url_for('held.update', id=event_id))
+
     event = self.fetch_by_id(self, event_id=event_id)
 
     photo_filename = save_image(photo) if photo else None
