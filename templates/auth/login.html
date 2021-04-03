@@ -12,11 +12,11 @@
 <form class="col-md-3 d-flex flex-column justify-content-center align-items-center" action="{{ url_for('auth.login') }}" method="POST">
   <div class="mb-2 w-100">
     <label for="input-email" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="input-email" name="email">
+    <input type="email" class="form-control" id="input-email" name="email" required>
   </div>
   <div class="mb-2 w-100">
     <label for="input-password" class="form-label">Password</label>
-    <input type="password" class="form-control" id="input-password" name="password">
+    <input type="password" class="form-control" id="input-password" name="password" required>
   </div>
   <div class="mb-2 form-check">
     <input type="checkbox" class="form-check-input" id="remember-me" name="remember">

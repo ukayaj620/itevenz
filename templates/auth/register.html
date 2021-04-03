@@ -12,15 +12,15 @@
 <form class="col-md-3 d-flex flex-column justify-content-center align-items-center" action="{{ url_for('auth.signup') }}" method="POST">
   <div class="mb-2 w-100">
     <label for="input-email" class="form-label">Name</label>
-    <input type="text" class="form-control" id="input-email" name="name">
+    <input type="text" class="form-control" id="input-email" name="name" required>
   </div>
   <div class="mb-2 w-100">
     <label for="input-email" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="input-email" name="email">
+    <input type="email" class="form-control" id="input-email" name="email" required>
   </div>
   <div class="mb-2 w-100">
     <label for="input-email" class="form-label">Telephone</label>
-    <input type="text" class="form-control" id="input-email" name="telephone">
+    <input type="text" class="form-control" id="input-email" name="telephone" required>
   </div>
   <div class="mb-2 w-100">
     <label for="options" class="form-label">Gender</label>
@@ -41,7 +41,7 @@
   </div>
   <div class="mb-2 w-100">
     <label for="input-password" class="form-label">Password</label>
-    <input type="password" class="form-control" id="input-password" name="password">
+    <input type="password" class="form-control" id="input-password" name="password" required>
   </div>
   <button type="submit" class="btn btn-primary w-100 fw-bold mt-3">Sign Up</button>
 </form>

@@ -4,23 +4,23 @@
 <form class="d-flex flex-column justify-content-center align-items-center container-fluid me-lg-4 mb-4" enctype="multipart/form-data" action="{{ url_for('held.create') }}" method="POST">
   <div class="mb-2 w-100">
     <label for="input-title" class="form-label fw-bold">Event Title</label>
-    <input type="text" class="form-control" id="input-title" name="title">
+    <input type="text" class="form-control" id="input-title" name="title" required>
   </div>
   <div class="mb-2 w-100 form-floating">
     <p class="mb-2 fw-bold">Description</p>
-    <textarea class="form-control p-2" id="input-description" name="description"></textarea>
+    <textarea class="form-control p-2" id="input-description" name="description" required></textarea>
   </div>
   <div class="mb-2 w-100">
     <label for="input-speaker" class="form-label fw-bold">Pembicara</label>
-    <input type="text" class="form-control" id="input-speaker" name="speaker">
+    <input type="text" class="form-control" id="input-speaker" name="speaker" required>
   </div>
   <div class="mb-2 w-100">
     <label for="input-due-date" class="form-label fw-bold">Registration Due Date</label>
-    <input type="date" class="form-control" id="input-due-date" name="due-date">
+    <input type="date" class="form-control" id="input-due-date" name="due-date" required>
   </div>
   <div class="mb-2 w-100">
     <label class="form-label fw-bold">Category</label>
-    <select class="form-select" id="category" name="category">
+    <select class="form-select" id="category" name="category" required>
       <option selected>Choose the event type</option>
       <option value="Webinar">Webinar</option>
       <option value="Workshop">Workshop</option>
@@ -31,24 +31,24 @@
   <div class="mb-2 container d-flex flex-row justify-content-between px-0">
     <div class="col-5">
       <label for="input-start-date" class="form-label fw-bold">Start Date</label>
-      <input type="date" class="form-control" id="input-held-date" name="start-date">
+      <input type="date" class="form-control" id="input-held-date" name="start-date" required>
       <div class="mt-2 col-12">
         <label for="input-start-time" class="form-label fw-bold">Start Time</label>
-        <input type="time" id="input-start-time" name="start-time">
+        <input type="time" id="input-start-time" name="start-time" required>
       </div>
     </div>
     <div class="col-5">
       <label for="input-end-date" class="form-label fw-bold">End Date</label>
-      <input type="date" class="form-control" id="input-end-date" name="end-date">
+      <input type="date" class="form-control" id="input-end-date" name="end-date" required>
       <div class="mt-2 col-12">
         <label for="input-end-time" class="form-label fw-bold">End Time</label>
-        <input type="time" id="input-end-time" name="end-time">
+        <input type="time" id="input-end-time" name="end-time" required>
       </div>
     </div>
   </div>
   <div class="w-100 mb-2">
     <label class="form-label fw-bold" for="input-photo">Pictures</label>
-    <input type="file" class="form-control" id="input-photo" name="photo">
+    <input type="file" class="form-control" id="input-photo" name="photo" required>
   </div>
   <button type="submit" class="btn btn-primary w-100 fw-bold mt-3">Create Event</button>
 </form>
