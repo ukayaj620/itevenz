@@ -35,3 +35,25 @@ class Event(db.Model):
     db.session.add(event)
     db.session.commit()
   
+  def update(self, title, description, start_date, end_date, category, start_time, end_time, due_date, event_id, speaker, poster_filename=None):
+    event = Event.query.filter_by(id=event_id).first()
+    event.title = title
+    event.description = description
+    event.start_date = start_date
+    event.start_time = start_time
+    event.end_date = end_date
+    event.end_time = end_time
+    event.due_date = due_date
+    event.speaker = speaker
+    event.category = category
+
+    if poster_filename is not None:
+      event.poster_filename = poster_filename
+    
+    db.session.commit()
+  
+  def delete(self, event_id):
+    event = Event.query.filter_by(id=event_id).first()
+    db.session.delete(event)
+    db.session.commit()
+

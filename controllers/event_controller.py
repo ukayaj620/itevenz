@@ -1,6 +1,7 @@
 from flask import redirect, url_for, flash
-from ..models.event import Event
 from ..config import Config
+from ..models.event import Event
+from ..utils.images import delete_image
 import os
 
 class EventController:
@@ -28,4 +29,34 @@ class EventController:
     )
     
     flash('Event is successfully created', 'info')
+    return redirect(url_for('held.open_class'))
+
+  def update(self, title, description, start_date, end_date, category, start_time, end_time, due_date, poster_filename, event_id, speaker):
+    event = self.fetch_by_id(self, event_id=event_id)
+
+    delete_image(event.poster_filename) if poster_filename is not None else None
+    
+    Event.update(
+      Event,
+      title=title,
+      description=description,
+      start_date=start_date,
+      end_date=end_date,
+      category=category,
+      start_time=start_time,
+      end_time=end_time,
+      due_date=due_date,
+      poster_filename=poster_filename,
+      event_id=event_id,
+      speaker=speaker
+    )
+
+    return redirect(url_for('held.open_class'))
+
+  def delete(self, event_id):
+    event = self.fetch_by_id(self, event_id=event_id)
+
+    delete_image(event.poster_filename)
+    Event.delete(Event, event_id=event_id)
+
     return redirect(url_for('held.open_class'))
