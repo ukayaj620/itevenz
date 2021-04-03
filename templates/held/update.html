@@ -1,7 +1,7 @@
 {% extends "held/index.html" %}
 
 {% block held_event_content %}
-<form class="d-flex flex-column justify-content-center align-items-center container-fluid me-lg-4 mb-4" enctype="multipart/form-data" action="{{ url_for('held.create') }}" method="POST">
+<form class="d-flex flex-column justify-content-center align-items-center container-fluid me-lg-4 mb-4" enctype="multipart/form-data" action="{{ url_for('held.update', id=event.id) }}" method="POST">
   <input type="hidden" class="form-control" id="input-title" name="id" value="{{ event.id }}">
   <div class="mb-2 w-100">
     <label for="input-title" class="form-label fw-bold">Event Title</label>
@@ -47,13 +47,10 @@
       </div>
     </div>
   </div>
-  <!-- <div class="mb-2 w-100">
+  <div class="mb-2 w-100">
     <label class="form-label fw-bold" for="input-photo">Pictures</label>
-    <div class="d-flex flex-lg-row flex-column justify-content-between align-items-center">
-      <input type="file" class="form-control w-lg-75" id="input-photo" name="photo">
-      <a type="button" class="btn btn-primary fw-bold mt-3 mt-lg-0">Reupload Image</a>
-    </div>
-  </div> -->
+    <input type="file" class="form-control w-lg-100" id="input-photo" name="photo">
+  </div>
   <button type="submit" class="btn btn-primary w-100 fw-bold mt-3">Update Event</button>
 </form>
 {% endblock %}
