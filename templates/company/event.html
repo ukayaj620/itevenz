@@ -1,7 +1,7 @@
 {% extends "layout/base.html" %}
 
 {% block content %}
-<div class="px-4 mt-4 d-flex w-100 container-fluid flex-wrap align-items-center justify-content-center">
+<div class="px-4 mt-4 d-flex w-100 container-fluid flex-wrap align-items-center justify-content-center mb-4">
   {% for event in events %}
     <a 
       type="button" 
@@ -26,4 +26,24 @@
     </a>
   {% endfor %}
 </div>
+{% endblock %}
+
+{% block footer %}
+<footer class="text-center w-100 d-flex flex-lg-row flex-column container-fluid align-items-center justify-content-between p-4" style="background-color: #b3d4ff;">
+  <div class="ms-lg-4">
+    <h5 class="fw-bold mb-2">Developed by Jayaku Briliantio</h5>
+    <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+      <a class="me-3" target="_blank" href="https://github.com/ukayaj620/">
+        <img src="{{ url_for('static', filename='/images/github.svg') }}" width="36">
+      </a>
+      <a target="_blank" href="https://www.linkedin.com/in/neartojayakubriliantio/">
+        <img src="{{ url_for('static', filename='/images/linkedin.svg') }}" width="36">
+      </a>
+    </div>
+  </div>
+  <div class="mt-4 mt-lg-0 me-lg-4 d-flex flex-column align-items-center align-items-lg-end">
+    <img src="{{ url_for('static', filename='images/brand.svg') }}" width="180">
+    <p class="mt-2 small">Copyright © by Jayaku B. All rights reserved.</p>
+  </div>
+</footer>
 {% endblock %}
