@@ -29,6 +29,7 @@
 {% endblock %}
 
 {% block footer %}
+{% if not current_user.is_authenticated %}
 <footer class="text-center w-100 d-flex flex-lg-row flex-column container-fluid align-items-center justify-content-between p-4" style="background-color: #b3d4ff;">
   <div class="ms-lg-4">
     <h5 class="fw-bold mb-2">Developed by Jayaku Briliantio</h5>
@@ -46,4 +47,5 @@
     <p class="mt-2 small">Copyright © by Jayaku B. All rights reserved.</p>
   </div>
 </footer>
+{% endif %}
 {% endblock %}
