@@ -25,8 +25,7 @@
         <div class="collapse navbar-collapse" id="nav-dropdown">
           {% if not current_user.is_authenticated %}
           {% set navbar = [
-            ('/', 'home', 'Home'),
-            ('/about', 'about', 'About Us'),
+            ('/', 'about', 'About Us'),
             ('/event', 'event', 'Event')
           ] -%}
           {% else %}

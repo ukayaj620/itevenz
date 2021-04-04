@@ -6,10 +6,6 @@ from flask_login import current_user
 company = Blueprint('company', __name__, template_folder='templates')
 
 @company.route('/')
-def home():
-  return render_template('company/home.html')
-
-@company.route('/about')
 def about():
   return render_template('company/about.html')
 
