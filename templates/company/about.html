@@ -1,7 +1,33 @@
 {% extends "layout/base.html" %}
 
 {% block content %}
-<div class="w-100 px-4 mt-4 d-flex flex-direction-row align-items-center justify-content-center">
-  <p>This will the company about page</p>
+<div class="w-100 px-4 mt-4 d-flex flex-column align-items-center justify-content-center">
+  <div class="w-100 d-flex flex-lg-row flex-column align-items-center justify-content-around container-fluid mb-4">
+    <div class="col-12 col-lg-5 d-flex flex-row align-items-center justify-content-center">
+      <img class="w-100" src="{{ url_for('static', filename='/images/conference.svg') }}">
+    </div>
+    <div class="col-12 col-lg-5 d-flex flex-column align-items-center justify-content-center mt-4 mt-lg-0">
+      <h2 class="fw-bold text-center">Join any Online Technology Event Around the World</h2>
+      <h6 class="text-center">
+        You can widely join all events all over the world with free (no money needed) and online.
+        The purpose of <strong>Itevenz</strong> is to achieve SDG from United Nation.
+      </h6>
+      <a href="{{ url_for('auth.signup') }}" class="btn w-75 btn-primary btn-lg mt-4 fw-bold">Getting Started</a>
+    </div>
+  </div>
+  <div style="height: 2px; background-color: rgba(16, 15, 15, 0.4);" class="w-100 my-4"></div>
+  <div class="w-100 d-flex flex-lg-row-reverse flex-column align-items-center justify-content-around container-fluid my-4">
+    <div class="col-12 col-lg-5 d-flex flex-row align-items-center justify-content-center">
+      <img class="w-100" src="{{ url_for('static', filename='/images/learning.svg') }}">
+    </div>
+    <div class="col-12 col-lg-5 d-flex flex-column align-items-center justify-content-center mt-4 mt-lg-0">
+      <h2 class="fw-bold text-center">Learn from the Best with High Competence</h2>
+      <h6 class="text-center">
+        You can widely join all events to learn from the best on any major related to IT.
+        The purpose of <strong>Itevenz</strong> is to bring the real quality education to the world.
+      </h6>
+      <a href="{{ url_for('auth.signup') }}" class="btn w-75 btn-primary btn-lg mt-4 fw-bold">Join Now</a>
+    </div>
+  </div>
 </div>
 {% endblock %}
