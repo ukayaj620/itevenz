@@ -26,7 +26,7 @@ class EventController:
 
   def create(self, request, photo, user_id):
     check_message = check_form_time(request, False)
-    if check_message != '':
+    if check_message is not None:
       flash(check_message, 'warning')
       return redirect(url_for('held.create'))
 
