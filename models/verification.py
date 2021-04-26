@@ -23,6 +23,14 @@ class Verification(db.Model):
     db.session.add(verification)
     db.session.commit()
 
+  def update(self, token, user_id):
+    now = datetime.now()
+    verification = Verification.query.filter_by(user_id=user_id).first()
+    verification.token = token
+    verification.created_at = now
+    verification.valid = now + timedelta(hours=24)
+    db.session.commit()
+
   def delete(self, token_id):
     verification = Verification.query.filter_by(id=token_id).first()
     db.session.delete(verification)
