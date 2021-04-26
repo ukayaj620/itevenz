@@ -35,10 +35,14 @@ class AuthController:
   def login(self, request, remember):
     user = User.query.filter_by(email=request['email']).first()
 
+    if not user:
+      flash('Please check your login details and try again.', 'danger')
+      return redirect(url_for('auth.login'))
+
     if bool(user.is_verified) == False:
       return self.sent_verification_email(self, email=request['email'], msg='Your email has not been verified')
 
-    if not user or not check_password_hash(user.password, request['password']):
+    if not check_password_hash(user.password, request['password']):
       flash('Please check your login details and try again.', 'danger')
       return redirect(url_for('auth.login'))
 
