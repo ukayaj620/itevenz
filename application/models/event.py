@@ -1,4 +1,4 @@
-from ..app import db
+from application.app import db
 
 
 class Event(db.Model):

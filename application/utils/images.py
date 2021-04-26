@@ -4,7 +4,7 @@ import random
 from flask import abort
 import os
 from werkzeug.utils import secure_filename
-from ..config import Config
+from application.config import Config
 
 def validate_image(stream):
   header = stream.read(512)

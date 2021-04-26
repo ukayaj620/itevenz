@@ -1,10 +1,10 @@
 from flask import flash, url_for, redirect
 from flask_login import login_user
-from ..models.user import User
-from ..models.verification import Verification
+from application.models.user import User
+from application.models.verification import Verification
 from werkzeug.security import generate_password_hash, check_password_hash
-from ..utils.mailer import send_signup_verification
-from ..utils.time import is_expire
+from application.utils.mailer import send_signup_verification
+from application.utils.time import is_expire
 import random
 import string
 
@@ -18,7 +18,7 @@ class AuthController:
     fetched_user = self.fetch_user_by_id(self, email=email)
 
     token = ''.join(random.choice(string.ascii_letters) for i in range(20))
-    link = f'http://127.0.0.1:5000/auth/verify/{fetched_user.id}/{token}'
+    link = f'{fetched_user.id}/{token}'
 
     hashed_token = token=generate_password_hash(token, method='sha256')
 

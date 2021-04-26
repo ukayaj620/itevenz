@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
-from ..controllers.event_controller import EventController
-from ..controllers.participation_controller import ParticipationController
+from application.controllers.event_controller import EventController
+from application.controllers.participation_controller import ParticipationController
 from flask_login import current_user
 
 company = Blueprint('company', __name__, template_folder='templates')

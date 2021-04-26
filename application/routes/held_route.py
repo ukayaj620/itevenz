@@ -1,7 +1,7 @@
 from flask import Blueprint, url_for, render_template, request
-from ..controllers.event_controller import EventController
+from application.controllers.event_controller import EventController
 from flask_login import login_required, current_user
-from ..utils.images import save_image
+from application.utils.images import save_image
 
 held = Blueprint('held', __name__, template_folder='templates')
 

@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from ..controllers.auth_controller import AuthController
+from application.controllers.auth_controller import AuthController
 from flask_login import logout_user, login_required
 
 auth = Blueprint('auth', __name__, template_folder='templates')
