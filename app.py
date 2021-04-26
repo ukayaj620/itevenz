@@ -26,6 +26,7 @@ def create_app():
   mail.init_app(app)
 
   from .models.user import User
+  from .models.verification import Verification
 
   @login_manager.user_loader
   def load_user(user_id):
