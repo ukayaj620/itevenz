@@ -16,3 +16,8 @@ def check_form_time(request, with_seconds=False):
 def string_to_datetime(time_string):
   time = datetime.strptime(time_string, '%Y-%m-%d') 
   return time
+
+
+def is_expire(expire):
+  now = datetime.now()
+  return now > expire
