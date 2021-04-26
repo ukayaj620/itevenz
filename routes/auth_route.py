@@ -21,6 +21,27 @@ def signup():
     return render_template('auth/register.html')
 
 
+@auth.route('/email-verification/<string:email>', methods=['GET'])
+def email_verification(email):
+  print(email)
+  return render_template('auth/verification.html', data={'user_email': email})
+
+
+@auth.route('/verify/<int:user_id>/<string:token>', methods=['GET'])
+def verify(user_id, token):
+  return AuthController.verify(AuthController, token=token, user_id=user_id)
+
+
+@auth.route('/resend-link', methods=['POST'])
+def resend_link():
+  return AuthController.sent_verification_email(
+    AuthController, 
+    email=request.form['email'],
+    msg='Reset Link!', 
+    reset=True
+  )
+
+
 @auth.route('/logout')
 @login_required
 def logout():
