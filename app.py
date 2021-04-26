@@ -3,9 +3,11 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from .config import Config
+from flask_mail import Mail
 
 
 db = SQLAlchemy()
+mail = Mail()
 
 def create_app():
 
@@ -20,6 +22,8 @@ def create_app():
   login_manager.login_view = 'auth.login'
   login_manager.login_message_category = "danger"
   login_manager.init_app(app)
+
+  mail.init_app(app)
 
   from .models.user import User
 
