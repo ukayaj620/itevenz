@@ -7,7 +7,7 @@ class Config:
     SECRET_KEY = str(os.environ.get('SECRET_KEY'))
     SQLALCHEMY_DATABASE_URI = str(os.environ.get('DATABASE_URL'))
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    UPLOAD_EXTENSIONS = str(os.environ.get('UPLOAD_IMAGE_PATH')).split(' ')
+    UPLOAD_EXTENSIONS = list(str(os.environ.get('UPLOAD_EXTENTIONS')).split(' '))
     UPLOAD_PATH = str(os.environ.get('UPLOAD_IMAGE_PATH'))
 
 
