@@ -12,6 +12,7 @@ class Config:
 
     UPLOAD_EXTENSIONS = list(str(os.environ.get('UPLOAD_EXTENTIONS')).split(' '))
     UPLOAD_PATH = str(os.environ.get('UPLOAD_IMAGE_PATH'))
+    UPLOAD_DIR = str(os.environ.get('UPLOAD_IMAGE_DIR'))
 
     MAIL_SERVER = str(os.environ.get('MAIL_SERVER'))
     MAIL_PORT = str(os.environ.get('MAIL_PORT'))
