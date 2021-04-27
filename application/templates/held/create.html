@@ -1,5 +1,7 @@
 {% extends "held/index.html" %}
 
+{% block title %} Held Event {% endblock %}
+
 {% block held_event_content %}
 {% with messages = get_flashed_messages(with_categories=True) %}
   {% if messages %}
